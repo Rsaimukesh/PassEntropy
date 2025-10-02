@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PassEntropy - Password Strength Checker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔐 PassEntropy</h1>
+            <p class="subtitle">Advanced Password Strength Analyzer</p>
+        </header>
+
+        <main>
+            <div class="input-section">
+                <label for="password">Enter Password:</label>
+                <div class="password-input-wrapper">
+                    <input type="password" id="password" placeholder="Type your password here..." autocomplete="off">
+                    <button type="button" id="togglePassword" class="toggle-btn" aria-label="Toggle password visibility">
+                        <span class="eye-icon">👁️</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="charset-section">
+                <h3>Character Set Detection:</h3>
+                <div class="charset-indicators">
+                    <div class="charset-item" id="lowercase-check">
+                        <span class="checkbox">☐</span> Lowercase (a-z)
+                    </div>
+                    <div class="charset-item" id="uppercase-check">
+                        <span class="checkbox">☐</span> Uppercase (A-Z)
+                    </div>
+                    <div class="charset-item" id="digits-check">
+                        <span class="checkbox">☐</span> Digits (0-9)
+                    </div>
+                    <div class="charset-item" id="symbols-check">
+                        <span class="checkbox">☐</span> Symbols (!@#$...)
+                    </div>
+                </div>
+            </div>
+
+            <div class="strength-meter-section">
+                <div class="strength-meter">
+                    <div class="strength-bar" id="strengthBar"></div>
+                </div>
+                <p class="strength-label" id="strengthLabel">Enter a password to analyze</p>
+            </div>
+
+            <div class="results-section" id="results" style="display: none;">
+                <div class="result-grid">
+                    <div class="result-item">
+                        <h3>Password Length</h3>
+                        <p class="result-value" id="length">0</p>
+                    </div>
+                    <div class="result-item">
+                        <h3>Character Set Size</h3>
+                        <p class="result-value" id="charsetSize">0</p>
+                    </div>
+                    <div class="result-item">
+                        <h3>Entropy</h3>
+                        <p class="result-value" id="entropy">0 bits</p>
+                    </div>
+                    <div class="result-item">
+                        <h3>Keyspace</h3>
+                        <p class="result-value" id="keyspace">2^0</p>
+                    </div>
+                </div>
+
+                <div class="crack-time-section">
+                    <h3>Estimated Time to Crack:</h3>
+                    <div class="crack-scenarios">
+                        <div class="scenario">
+                            <div class="scenario-header">
+                                <span class="scenario-icon">🐌</span>
+                                <span class="scenario-name">Online / Rate-Limited</span>
+                            </div>
+                            <p class="scenario-speed">100 guesses/sec</p>
+                            <p class="scenario-time" id="time-online">-</p>
+                        </div>
+                        <div class="scenario">
+                            <div class="scenario-header">
+                                <span class="scenario-icon">💻</span>
+                                <span class="scenario-name">Single GPU / Weak Offline</span>
+                            </div>
+                            <p class="scenario-speed">10,000 guesses/sec</p>
+                            <p class="scenario-time" id="time-gpu">-</p>
+                        </div>
+                        <div class="scenario">
+                            <div class="scenario-header">
+                                <span class="scenario-icon">🖥️</span>
+                                <span class="scenario-name">Strong GPU Cluster</span>
+                            </div>
+                            <p class="scenario-speed">1,000,000,000 guesses/sec</p>
+                            <p class="scenario-time" id="time-cluster">-</p>
+                        </div>
+                        <div class="scenario">
+                            <div class="scenario-header">
+                                <span class="scenario-icon">🏭</span>
+                                <span class="scenario-name">Huge Cluster / ASIC</span>
+                            </div>
+                            <p class="scenario-speed">100,000,000,000 guesses/sec</p>
+                            <p class="scenario-time" id="time-asic">-</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="warnings-section" id="warnings" style="display: none;">
+                    <h3>⚠️ Warnings:</h3>
+                    <ul id="warningsList"></ul>
+                </div>
+            </div>
+
+            <div class="tips-section">
+                <h3>💡 Security Tips:</h3>
+                <ul>
+                    <li><strong>Use a password manager</strong> to generate and store strong, unique passwords</li>
+                    <li><strong>Enable Two-Factor Authentication (2FA)</strong> wherever possible</li>
+                    <li><strong>Prefer passphrases</strong> - longer passwords with multiple words are stronger</li>
+                    <li><strong>Avoid common patterns</strong> like "123456", "password", or keyboard patterns</li>
+                    <li><strong>Don't reuse passwords</strong> across different accounts</li>
+                    <li><strong>Update passwords regularly</strong>, especially for sensitive accounts</li>
+                </ul>
+            </div>
+        </main>
+
+        <footer>
+            <p>🔒 All calculations are performed locally in your browser. Your password is never sent anywhere.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
